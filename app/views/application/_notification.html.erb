@@ -1,0 +1,8 @@
+<% if flash[:notice].present? %>
+  <div class="callout">
+    <button class="close-button" aria-label="Close alert" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p><%= flash[:notice].to_s %></p>
+  </div>
+<% end %>

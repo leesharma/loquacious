@@ -1,0 +1,19 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">loquacio.us</li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <% if current_user %>
+        <li>Hello, <%= current_user.username %>!</li>
+        <li><%= link_to 'Log out', log_out_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Login', login_path %></li>
+        <li><%= link_to 'Sign up', sign_up_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

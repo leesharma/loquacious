@@ -1,0 +1,23 @@
+<h1>Login</h1>
+<p>Fill in your login credentials below:</p>
+
+<%#= render 'form_errors', subject: @user %>
+<%= form_tag sessions_path, method: :post, id: 'new_session' do %>
+  <div class="row column">
+    <%= label_tag :username %>
+    <%= text_field_tag :username %>
+  </div>
+  <div class="row">
+    <div class="medium-6 columns">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
+    <div class="medium-6 columns">
+      <%= label_tag :password_confirmation %>
+      <%= password_field_tag :password_confirmation %>
+    </div>
+  </div>
+  <div class="row column">
+    <%= submit_tag 'Login', class: 'button' %>
+  </div>
+<% end %>
