@@ -8,7 +8,20 @@ feature 'Users can sign in', type: :feature do
     within 'form#new_session' do
       fill_in 'Username', with: 'foobar'
       fill_in 'Password', with: 'password'
-      fill_in 'Password confirmation', with: 'password'
+      click_button 'Login'
+    end
+
+    expect(page).to have_text 'Hey foobar, welcome back!'
+    expect(page).to have_link 'Log out'
+  end
+
+  scenario 'with a differently-cased username' do
+    create(:user, username: 'foobar', password: 'password')
+    visit root_url
+    click_link 'Login'
+    within 'form#new_session' do
+      fill_in 'Username', with: 'FOOBAR'
+      fill_in 'Password', with: 'password'
       click_button 'Login'
     end
 
@@ -30,35 +43,6 @@ feature 'Users can sign in', type: :feature do
     expect(page).not_to have_link 'Log out'
   end
 
-  scenario 'without a password confirmation' do
-    create(:user, username: 'foobar', password: 'password')
-    visit root_url
-    click_link 'Login'
-    within 'form#new_session' do
-      fill_in 'Username', with: 'foobar'
-      fill_in 'Password', with: 'password'
-      click_button 'Login'
-    end
-
-    expect(current_path).to eq login_path
-    expect(page).not_to have_link 'Log out'
-  end
-
-  scenario 'with an incorrect password confirmation' do
-    create(:user, username: 'foobar', password: 'password')
-    visit root_url
-    click_link 'Login'
-    within 'form#new_session' do
-      fill_in 'Username', with: 'foobar'
-      fill_in 'Password', with: 'password'
-      fill_in 'Password confirmation', with: 'not the password'
-      click_button 'Login'
-    end
-
-    expect(current_path).to eq login_path
-    expect(page).not_to have_link 'Log out'
-  end
-
   scenario 'with invalid credentials' do
     create(:user, username: 'foobar', password: 'password')
     visit root_url
@@ -66,7 +50,6 @@ feature 'Users can sign in', type: :feature do
     within 'form#new_session' do
       fill_in 'Username', with: 'foobar'
       fill_in 'Password', with: 'not the password'
-      fill_in 'Password confirmation', with: 'not the password'
       click_button 'Login'
     end
 

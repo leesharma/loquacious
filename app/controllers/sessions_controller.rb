@@ -6,8 +6,9 @@ class SessionsController < ApplicationController
 
   # POST /login
   def create
-    @user = User.find_by username: username
-    if @user && @user.authenticate(password)
+    @user = User.find_by 'lower(username) = ?', params[:username].downcase
+
+    if @user && @user.authenticate(params[:password])
       set_current_user @user
       redirect_to root_path, notice: "Hey #{@user.username}, welcome back!"
     else
@@ -19,16 +20,5 @@ class SessionsController < ApplicationController
   def destroy
     set_current_user(nil)
     redirect_to root_path, notice: 'You have logged out.'
-  end
-
-  private
-
-  def username
-    params[:username]
-  end
-
-  def password
-    return unless params[:password] == params[:password_confirmation]
-    params[:password]
   end
 end
