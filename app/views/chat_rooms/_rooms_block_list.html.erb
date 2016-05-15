@@ -1,0 +1,20 @@
+<% join_buttons ||= false %>
+<% if rooms.present? %>
+  <dl>
+    <div class="row small-up-1 medium-up-2 large-up-4">
+      <% rooms.each do |room| %>
+        <div class="column">
+          <dt>
+          <%= link_to "#{room.name} (#{room.users.count})", dashboard_path(room: room.name) %>
+          </dt>
+          <dd><%= room.tagline || 'no description' %></dd>
+          <% if join_buttons %>
+            <dd><%= button_to 'Join', join_path(room: room.name), class: 'button small' %></dd>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </dl>
+<% else %>
+  <h5 class="subheader">No rooms currently available</h5>
+<% end %>

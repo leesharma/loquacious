@@ -11,8 +11,8 @@ feature 'Users can sign in', type: :feature do
       click_button 'Login'
     end
 
-    expect(page).to have_text 'Hey foobar, welcome back!'
     expect(page).to have_link 'Log out'
+    expect(current_path).to eq dashboard_path
   end
 
   scenario 'with a differently-cased username' do
@@ -25,7 +25,6 @@ feature 'Users can sign in', type: :feature do
       click_button 'Login'
     end
 
-    expect(page).to have_text 'Hey foobar, welcome back!'
     expect(page).to have_link 'Log out'
   end
 

@@ -10,7 +10,6 @@ feature 'Users can sign out', type: :feature do
     within 'form#new_session' do
       fill_in 'Username', with: 'freddy'
       fill_in 'Password', with: 'password'
-      fill_in 'Password confirmation', with: 'password'
       click_button 'Login'
     end
 

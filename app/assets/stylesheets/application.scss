@@ -1,0 +1,101 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.title_container {
+  margin-top: 15%;
+}
+
+.main {
+  height: 100%;
+}
+
+.nospace {
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/**
+ * Dashboard Styles
+ **/
+
+// TODO: set to variable
+div.chat-area {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+$primary-color: #2199E8;
+
+div.chatrooms {
+  max-width: 300px;
+  background-color: $primary-color;
+  color: #eee;
+  padding: 1em 0;
+  height: 100%;
+  position: fixed;
+}
+
+a.chatroom {
+  display: block;
+  color: #eee;
+  padding: 0.5em 1em;
+  &:hover {
+    color: #fff;
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+div.messages {
+  padding: 1em;
+  margin: 0;
+  h1,h2,h3,h4,h5,h6 {
+    color: #444;
+    &.subheading {
+      color: #888;
+    }
+  }
+}
+
+div.message {
+  margin-bottom: 0.8em;
+}
+
+dt small {
+  font-weight: normal;
+  color: #888;
+}
+
+.add_room {
+  padding: 1em;
+  font-weight: 500;
+  font-size: 1.2em;
+  display: block;
+  color: #eee;
+  &:hover {
+    color: #fff;
+    background-color: darken($primary-color, 10%);
+  }
+}

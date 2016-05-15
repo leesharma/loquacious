@@ -1,0 +1,27 @@
+<h1>Join a chat room</h1>
+
+<h3>Joined rooms</h3>
+<dl>
+  <div class="row small-up-1 medium-up-2 large-up-4">
+    <% current_user.chat_rooms.each do |room| %>
+      <div class="column">
+        <dt>
+        <%= link_to "#{room.name} (#{room.users.count})", dashboard_path(room: room.name) %>
+        </dt>
+        <dd><%= room.tagline || 'no description' %></dd>
+      </div>
+    <% end %>
+  </div>
+</dl>
+
+<h3>Available rooms</h3>
+<%= render 'rooms_block_list', rooms: @rooms, join_buttons: true %>
+
+<hr />
+
+<h3>Create New Room</h3>
+<%= simple_form_for @room do |f| %>
+  <%= f.input :name %>
+  <%= f.input :tagline %>
+  <%= f.submit 'Create room' %>
+<% end %>

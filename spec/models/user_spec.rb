@@ -43,4 +43,12 @@ describe User, type: :model do
       expect(user).not_to be_valid
     end
   end
+
+  describe 'user' do
+    it 'should join the #global chatroom upon creation' do
+      user = create(:user)
+      rooms = user.chat_rooms.pluck(:name)
+      expect(rooms).to include 'global'
+    end
+  end
 end

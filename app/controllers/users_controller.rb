@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new secure_params
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Hey #{@user.username}, welcome to loquacio.us!"
+      redirect_to dashboard_path, notice: "Hey #{@user.username}, welcome to loquacio.us!"
     else
       render :new
     end

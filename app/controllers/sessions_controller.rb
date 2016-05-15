@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :authenticate_user!, only: :destroy
+
   # GET /login
   def new
     @user = User.new
@@ -10,7 +12,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       set_current_user @user
-      redirect_to root_path, notice: "Hey #{@user.username}, welcome back!"
+      redirect_to dashboard_path
     else
       render :new
     end

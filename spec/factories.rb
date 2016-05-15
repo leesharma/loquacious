@@ -9,4 +9,16 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
+
+  factory :chat_room do
+    sequence :name do |n|
+      "room#{n}"
+    end
+  end
+
+  factory :message do
+    user
+    chat_room
+    message 'hello, world'
+  end
 end

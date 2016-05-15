@@ -1,0 +1,18 @@
+<h3><%= chat_room.name %></h3>
+<h5 class="subheading"><%= chat_room.tagline || 'No description' %></h5>
+<% unless chat_room.includes_user? current_user %>
+  <%= button_to 'Join', join_path(room: chat_room.name), class: 'button' %>
+<% end %>
+<hr />
+<dl>
+<% chat_room.messages.each do |message| %>
+  <% message = MessageDecorator.decorate(message) %>
+  <div class="message">
+    <dt>
+      <%= content_tag :span, message.username, class: message.username %>
+      <small class="time"><%= message.time %></small>
+    </dt>
+    <dd><%= message.message %></dd>
+  </div>
+<% end %>
+</dl>
