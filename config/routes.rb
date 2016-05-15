@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   post '/login',    to: 'sessions#create',  as: 'sessions'
   delete '/logout', to: 'sessions#destroy', as: 'log_out'
 
-  resources :chat_rooms, only: [:create]
-  get '/rooms', to: 'chat_rooms#new', as: 'new_chat_room'
-  get '/dashboard/global', to: redirect('/dashboard')
-  get '/dashboard(/:room)', to: 'chat_rooms#index',  as: 'dashboard'
-  post '/dashboard(/:room)', to: 'messages#create', as: 'messages'
   post '/:room/join', to: 'chat_room_memberships#create', as: 'join'
+  get '/rooms',       to: 'chat_rooms#new',               as: 'new_chat_room'
+  resources :chat_rooms, only: :create
+
+  post '/dashboard(/:room)', to: 'messages#create', as: 'messages'
+  get '/dashboard/global',   to: redirect('/dashboard')
+  get '/dashboard(/:room)',  to: 'chat_rooms#index',  as: 'dashboard'
 
   root to: 'static_pages#home'
 end

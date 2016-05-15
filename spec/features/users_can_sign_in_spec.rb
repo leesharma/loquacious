@@ -55,4 +55,18 @@ feature 'Users can sign in', type: :feature do
     expect(current_path).to eq login_path
     expect(page).not_to have_link 'Log out'
   end
+
+  scenario 'and gets directed to the dashboard if they visit the root url' do
+    create(:user, username: 'foobar', password: 'password')
+    visit root_url
+    click_link 'Login'
+    within 'form#new_session' do
+      fill_in 'Username', with: 'foobar'
+      fill_in 'Password', with: 'password'
+      click_button 'Login'
+    end
+
+    visit '/'
+    expect(current_path).to eq dashboard_path
+  end
 end
