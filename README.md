@@ -1,24 +1,10 @@
-# README
+# loquacio.us
+## A chat service for the richly-worded
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a demo application using rails 5.0 rc1 and ActionCable. I put it
+together in order to play with some of the new features in the framework.
 
-Things you may want to cover:
+A demo of this application can be seen [here][heroku] (please allow a few seconds
+for Heroku to start up).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[heroku]: https://loquacious-demo.herokuapp.com/
