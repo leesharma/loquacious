@@ -1,6 +1,12 @@
-<a class="chatroom"
-   id="<%= chat_room.name %>"
-   href="<%= dashboard_path room: chat_room.name %>">
-  <dt><%= chat_room.name %></dt>
-  <dd><%= chat_room.tagline %></dd>
-</a>
+<h3><%= chat_room.name %></h3>
+<h5 class="subheading"><%= chat_room.tagline %></h5>
+
+<% if chat_room.join_button?(current_user: current_user) %>
+  <%= button_to 'Join', join_path(room: chat_room.name), class: 'button' %>
+<% end %>
+
+<hr />
+
+<dl>
+  <%= render chat_room.messages %>
+</dl>

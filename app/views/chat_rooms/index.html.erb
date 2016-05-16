@@ -4,9 +4,7 @@
 
   <div class="medium-4 large-3 columns chatrooms" id="chatrooms">
     <dl>
-    <% @rooms.each do |room| %>
-      <%= render room %>
-    <% end %>
+      <%= render collection: @rooms, partial: 'chat_room_block' %>
     </dl>
 
     <%= link_to "+ add room", new_chat_room_path, class: 'text-center add_room', id: 'add_room' %>
@@ -15,8 +13,10 @@
   <!-- right message area -->
 
   <div class="medium-8 large-9 columns messages" id="messages_container">
-    <%= render 'messages', chat_room: @active_room %>
-    <%= form_tag messages_path(room: @active_room_name) do %>
+    <%= render @active_room %>
+
+    <!-- message form -->
+    <%= form_tag messages_path(room: @active_room.url_param) do %>
       <div class="input-group">
         <%= text_field_tag :new_message, '', class: 'input-group-field' %>
         <div class="input-group-button">
@@ -24,6 +24,8 @@
         </div>
       </div>
     <% end %>
+
     <br /><br />
+
   </div>
 </div>

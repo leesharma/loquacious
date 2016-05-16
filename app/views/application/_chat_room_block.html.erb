@@ -1,0 +1,7 @@
+<% chat_room = chat_room_block %>
+<a class="chatroom"
+   id="<%= chat_room.name %>"
+   href="<%= dashboard_path room: chat_room.name %>">
+  <dt><%= chat_room.name %></dt>
+  <dd><%= chat_room.tagline %></dd>
+</a>
